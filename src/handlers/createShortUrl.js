@@ -8,6 +8,7 @@ Generates a short URL given an original URL.
 Creates a new `urlKey: originalUrl` key-value pair in KV.
 */
 export const createShortUrl = async (request) => {
+    const { hostname } = new URL(request.url)
     const { originalUrl } = await readRequestBody(request)
 
     const urlKey = await generateUniqueUrlKey()
@@ -15,7 +16,8 @@ export const createShortUrl = async (request) => {
     await URL_DB.put(urlKey, originalUrl)
 
     const data = {
-        shortUrl: urlKey,
+        urlKey,
+        shortUrl: `https://${hostname}/${urlKey}`,
         originalUrl,
     }
 
