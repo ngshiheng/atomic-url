@@ -2,16 +2,13 @@ import { Router } from 'itty-router'
 import { createShortUrl } from './src/handlers/createShortUrl'
 import { redirectShortUrl } from './src/handlers/redirectShortUrl'
 
-// Create a new router
 const router = Router()
 
 /*
 Our index route, a simple hello world.
 */
 router.get('/', () => {
-    return new Response(
-        'Hello, world! This is the root page of your Worker template.'
-    )
+    return new Response('Hello, world! Welcome to Cloudflare URL Shortener.')
 })
 
 /*

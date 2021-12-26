@@ -6,3 +6,7 @@ workers_dev = true
 route = ""
 zone_id = ""
 compatibility_date = "2021-12-26"
+
+kv_namespaces = [ 
+    { binding = "URL_DB", id = "69192c642cc0459495d0815802862a5e", preview_id = "69192c642cc0459495d0815802862a5e" }
+]
