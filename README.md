@@ -1,6 +1,8 @@
 <h1 align="center"><strong>URL Shortener</strong></h1>
 
-Designing a URL shortener such as [TinyURL](https://tinyurl.com/) and [Bitly](https://bitly.com/) is one of the most common System Design interview questions in software engineering. While meddling around with Cloudflare Worker, it gave me an idea to build an actual URL shortener that can be used by anyone.
+Designing a URL shortener such as [TinyURL](https://tinyurl.com/) and [Bitly](https://bitly.com/) is one of the most common System Design interview questions in software engineering.
+
+While meddling around with Cloudflare Worker, it gave me an idea to build an actual URL shortener that can be used by anyone.
 
 This is a proof of concept (POC) of how one builds an actual URL shortener service using serverless computing.
 
