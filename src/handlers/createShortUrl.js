@@ -4,9 +4,9 @@ const characterSet =
     '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 
 /*
-Creates a short URL with a urlKey.
+Generates a short URL given an original URL.
 
-Creates a new urlKey: originalUrl key-value pair in KV.
+Creates a new `urlKey: originalUrl` key-value pair in KV.
 */
 export const createShortUrl = async (request) => {
     if (request.headers.get('Content-Type') !== 'application/json') {
@@ -32,7 +32,7 @@ export const createShortUrl = async (request) => {
 }
 
 /*
-Generate a unique urlKey using `nanoid` package.
+Generate a unique `urlKey` using `nanoid` package.
 
 Keep retrying until a unique urlKey which does not exist in the URL_DB.
 */
