@@ -1,0 +1,20 @@
+name = "cf-url-shortener-dev"
+type = "webpack"
+
+account_id = "<YOUR_CF_ACCOUNT_ID>"
+compatibility_date = "2021-12-26"
+route = ""
+workers_dev = true
+zone_id = "<YOUR_CF_ZONE_ID>"
+
+kv_namespaces = [
+  {binding = "URL_DB", id = "<KV_NAMESPACE_ID>", preview_id = "<KV_NAMESPACE_ID>"},
+]
+
+[env.production]
+kv_namespaces = [
+  {binding = "URL_DB", id = "<KV_NAMESPACE_ID>"},
+]
+name = "cf-url-shortener"
+route = "custom.domain.com/*"
+zone_id = "<YOUR_CF_ZONE_ID>"
