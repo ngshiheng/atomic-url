@@ -1,0 +1,20 @@
+{
+    "name": "cf-url-shortener",
+    "private": true,
+    "version": "1.0.0",
+    "description": "package for creating workers templates",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "format": "prettier --write '**/*.{js,css,json,md}'"
+    },
+    "author": "Jerry Ng <ngshiheng@gmail.com>",
+    "license": "ISC",
+    "devDependencies": {
+        "prettier": "^2.5.1"
+    },
+    "dependencies": {
+        "itty-router": "^2.4.8",
+        "serverless-cloudflare-workers": "^1.2.0"
+    }
+}
