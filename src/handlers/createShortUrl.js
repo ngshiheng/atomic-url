@@ -1,7 +1,5 @@
 import { customAlphabet } from 'nanoid'
-
-const characterSet =
-    '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+import { ALPHABET } from '../utils/constants'
 
 /*
 Generates a short URL given an original URL.
@@ -37,7 +35,7 @@ Generate a unique `urlKey` using `nanoid` package.
 Keep retrying until a unique urlKey which does not exist in the URL_DB.
 */
 const generateUniqueUrlKey = async () => {
-    const nanoId = customAlphabet(characterSet, 8)
+    const nanoId = customAlphabet(ALPHABET, 8)
 
     let urlKey = nanoId()
 
