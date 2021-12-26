@@ -1,5 +1,6 @@
 import { customAlphabet } from 'nanoid'
 import { ALPHABET } from '../utils/constants'
+import { readRequestBody } from '../utils/parser'
 
 /*
 Generates a short URL given an original URL.
@@ -7,11 +8,7 @@ Generates a short URL given an original URL.
 Creates a new `urlKey: originalUrl` key-value pair in KV.
 */
 export const createShortUrl = async (request) => {
-    if (request.headers.get('Content-Type') !== 'application/json') {
-        return new Response('Unsupported Content Type', { status: 415 })
-    }
-
-    const { originalUrl } = await request.json()
+    const { originalUrl } = await readRequestBody(request)
 
     const urlKey = await generateUniqueUrlKey()
 
