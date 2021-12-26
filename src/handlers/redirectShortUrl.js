@@ -1,9 +1,9 @@
 /*
 Redirects short URL to its original URL.
 
-Example visit /q2W3eg1 would redirect you to its original URL.
+Example visit https://yourdomain.com/q2W3eg1 would redirect you to its original URL.
 */
-export const redirectShortUrl = async ({ params, url }) => {
+export const redirectShortUrl = async ({ params }) => {
     const urlKey = decodeURIComponent(params.text)
 
     const originalUrl = await URL_DB.get(urlKey)
