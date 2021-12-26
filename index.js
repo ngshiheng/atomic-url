@@ -15,12 +15,12 @@ router.get('/', () => {
 })
 
 /*
-This route redirects short URL to its original URL.
+Redirects short URL to its original URL.
 */
 router.get('/:text', redirectShortUrl)
 
 /*
-This route creates a short URL with an original URL.
+Creates a short URL that is associated with its an original URL.
 */
 router.post('/url', createShortUrl)
 
@@ -30,7 +30,7 @@ above, therefore it's useful as a 404 (and avoids us hitting worker exceptions, 
 
 Visit any page that doesn't exist (e.g. /foobar) to see it in action.
 */
-router.all('*', () => new Response('404, not found!', { status: 404 }))
+router.all('*', () => new Response('Not Found', { status: 404 }))
 
 /*
 This snippet ties our worker to the router we defined above, all incoming requests

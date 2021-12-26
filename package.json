@@ -15,6 +15,7 @@
     },
     "dependencies": {
         "itty-router": "^2.4.8",
+        "nanoid": "^3.1.30",
         "serverless-cloudflare-workers": "^1.2.0"
     }
 }

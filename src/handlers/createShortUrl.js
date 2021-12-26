@@ -1,3 +1,5 @@
+import { customAlphabet } from 'nanoid'
+
 /*
 Try send a POST request using curl or another tool.
 
@@ -5,24 +7,34 @@ Try the below curl command to send JSON:
 
 $ curl -X POST <worker> -H "Content-Type: application/json" -d '{"abc": "def"}'
 */
+
+const characterSet =
+    '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+
 export const createShortUrl = async (request) => {
-    // Create a base object with some fields.
-    let fields = {
-        asn: request.cf.asn,
-        colo: request.cf.colo,
+    if (request.headers.get('Content-Type') !== 'application/json') {
+        return new Response('Unsupported Content Type', { status: 415 })
     }
 
-    // If the POST data is JSON then attach it to our response.
-    if (request.headers.get('Content-Type') === 'application/json') {
-        fields['json'] = await request.json()
+    let response = {
+        shortUrl: generateUniqueUrlKey(),
     }
 
-    // Serialise the JSON to a string.
-    const returnData = JSON.stringify(fields, null, 2)
+    const { originalUrl } = await request.json()
+    response['originalUrl'] = originalUrl
 
-    return new Response(returnData, {
-        headers: {
-            'Content-Type': 'application/json',
-        },
+    const data = JSON.stringify(response, null, 2)
+
+    return new Response(data, {
+        headers: { 'Content-Type': 'application/json' },
     })
+}
+
+const generateUniqueUrlKey = () => {
+    const nanoId = customAlphabet(characterSet, 8)
+
+    const urlKey = nanoId()
+    // TODO: Query KV to see if urlKey already exist
+
+    return urlKey
 }
