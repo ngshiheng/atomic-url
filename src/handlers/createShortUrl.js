@@ -12,20 +12,29 @@ export const createShortUrl = async (request) => {
     const { originalUrl } = await readRequestBody(request)
 
     const urlKey = await generateUniqueUrlKey()
-
     await URL_DB.put(urlKey, originalUrl)
 
-    const data = {
-        urlKey,
-        shortUrl: `https://${hostname}/${urlKey}`,
-        originalUrl,
+    // Redirect if request type is form
+    const { headers } = request
+    const contentType = headers.get('content-type') || ''
+    if (contentType.includes('form')) {
+        return Response.redirect(`https://${hostname}/`)
     }
 
-    const response = JSON.stringify(data, null, 2)
-
-    return new Response(response, {
-        headers: { 'Content-Type': 'application/json' },
-    })
+    return new Response(
+        JSON.stringify(
+            {
+                urlKey,
+                shortUrl: `https://${hostname}/${urlKey}`,
+                originalUrl,
+            },
+            null,
+            2
+        ),
+        {
+            headers: { 'Content-Type': 'application/json' },
+        }
+    )
 }
 
 /*
