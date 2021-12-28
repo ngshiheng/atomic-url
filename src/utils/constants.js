@@ -68,7 +68,7 @@ export const LANDING_PAGE_HTML = `
                     <nav class="level">
                         <div class="level-right">
                             <small class="level-item" style="color: var(--textLight)">
-                            &copy; Atomic URL by jerrynsh.com. All Rights Reserved.
+                            &copy; Atomic URL by&nbsp<a href="https://jerrynsh.com/">Jerry Ng</a>. All Rights Reserved.
                             </small>
                         </div>
                     </nav>
