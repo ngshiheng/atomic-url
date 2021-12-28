@@ -1,15 +1,14 @@
 {
     "name": "cf-url-shortener",
-    "private": true,
     "version": "1.0.0",
-    "description": "package for creating workers templates",
+    "description": "A URL shortener POC built using Cloudflare Worker.",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "format": "prettier --write '**/*.{js,css,json,md}'"
     },
     "author": "Jerry Ng <ngshiheng@gmail.com>",
-    "license": "ISC",
+    "license": "MIT",
     "devDependencies": {
         "prettier": "^2.5.1"
     },
