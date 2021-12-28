@@ -30,16 +30,16 @@ export const LANDING_PAGE_HTML = `
             </div>
             <div class="column right has-text-centered">
               <h1 class="title is-4">Shorten A URL</h1>
-              <p class="description">Enter a valid URl to shorten</p>
+              <p class="description">Enter a valid URL to shorten</p>
               <form action="/api/url" method="POST">
                 <div class="field">
                   <div class="control">
-                    <input class="input is-medium" type="url" placeholder="https://jerrynsh.com/" name="originalUrl">
+                    <input class="input is-medium" type="url" placeholder="https://jerrynsh.com/" name="originalUrl" required>
                   </div>
                 </div>
-                <button class="button is-block is-primary is-fullwidth is-medium">Shorten</button>
+                <button class="button is-block is-primary is-fullwidth is-medium" type="submit">Shorten</button>
                 <br />
-                <small><em>Created by Jerry Ng.</em></small>
+                <small><em>Created by Jerry Ng</em></small>
               </form>
             </div>
           </div>
