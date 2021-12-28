@@ -5,8 +5,8 @@ import { LANDING_PAGE_HTML } from './src/utils/constants'
 
 const router = Router()
 
+// GET landing page html
 router.get('/', () => {
-    // return new Response('Welcome to Cloudflare URL Shortener! 🚀')
     return new Response(LANDING_PAGE_HTML, {
         headers: {
             'content-type': 'text/html;charset=UTF-8',
@@ -20,7 +20,7 @@ router.get('/:text', redirectShortUrl)
 // POST creates a short URL that is associated with its an original URL.
 router.post('/api/url', createShortUrl)
 
-// 404 for everything else
+// 404 for everything else.
 router.all('*', () => new Response('Not Found', { status: 404 }))
 
 // All incoming requests are passed to the router where your routes are called and the response is sent.
