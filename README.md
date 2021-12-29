@@ -1,10 +1,5 @@
 <h1 align="center"><strong>Atomic URL</strong></h1>
 
-<p align="center">
-  <img src="https://i.imgur.com/mlUqwN0.png">
-  <figcaption align="center"><i>A URL shortener POC built using Cloudflare Worker</i></figcaption>
-</p>
-
 Designing a URL shortener such as [TinyURL](https://tinyurl.com/) and [Bitly](https://bitly.com/) is one of the most common System Design interview questions in software engineering.
 
 While meddling around with Cloudflare Worker, it gave me an idea to build an actual URL shortener that can be used by anyone.
