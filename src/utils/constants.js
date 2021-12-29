@@ -15,17 +15,26 @@ export const LANDING_PAGE_HTML = `
         <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
         <script>
             const submitURL = () => {
-                document.getElementById('status').innerHTML = 'Creating short URL...'
+                let statusElement = document.getElementById('status')
+                let originalUrlElement = document.getElementById('url')
             
-                const originalUrl = document.getElementById('url').value
+                if (!originalUrlElement.reportValidity()) {
+                    throw new Error("Invalid URL.")
+                }
+            
+                statusElement.innerHTML = 'Creating short URL...'
+            
+                const originalUrl = originalUrlElement.value
                 const body = JSON.stringify({ originalUrl })
             
                 fetch('/api/url', { method: 'POST', body })
                     .then((data) => data.json())
                     .then((data) => {
-                        document.getElementById('status').innerHTML =
+                        statusElement.innerHTML =
                             'Your short URL: ' + data.shortUrl
                     })
+                
+                originalUrlElement.value = '';
             }
         </script>
     </head>
