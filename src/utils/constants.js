@@ -19,10 +19,10 @@ export const LANDING_PAGE_HTML = `
                 let originalUrlElement = document.getElementById('url')
             
                 if (!originalUrlElement.reportValidity()) {
-                    throw new Error("Invalid URL.")
+                    throw new Error('Invalid URL.')
                 }
             
-                statusElement.innerHTML = 'Creating short URL...'
+                statusElement.classList.add('is-loading')
             
                 const originalUrl = originalUrlElement.value
                 const body = JSON.stringify({ originalUrl })
@@ -30,12 +30,27 @@ export const LANDING_PAGE_HTML = `
                 fetch('/api/url', { method: 'POST', body })
                     .then((data) => data.json())
                     .then((data) => {
-                        statusElement.innerHTML =
-                            'Your short URL: ' + data.shortUrl
+                        statusElement.classList.remove('is-loading')
+                        statusElement.innerHTML = data.shortUrl
                     })
-                
-                originalUrlElement.value = '';
+            
+                originalUrlElement.value = ''
             }
+            
+            const copyToClipboard = (elementId) => {
+                var aux = document.createElement('input')
+            
+                aux.setAttribute('value', document.getElementById(elementId).innerHTML)
+            
+                document.body.appendChild(aux)
+            
+                aux.select()
+            
+                document.execCommand('copy')
+            
+                document.body.removeChild(aux)
+            }
+            
         </script>
     </head>
     <body>
@@ -66,9 +81,14 @@ export const LANDING_PAGE_HTML = `
                                     <input class="input is-link is-primary is-medium is-rounded" type="url" placeholder="https://jerrynsh.com/" id="url" required>
                                 </div>
                             </div>
-                            <button id="submit" class="button is-block is-primary is-fullwidth is-medium" onclick="submitURL()">Shorten</button>
+                            <button id="submit" class="button is-block is-primary is-rounded is-fullwidth is-medium" onclick="submitURL()">Shorten</button>
                             <br />
-                            <small id="status"><em></em></small>
+                            <button class="button is-info is-rounded is-small" onclick="copyToClipboard('status')">
+                            <span class="icon">
+                            <i class="fas fa-copy"></i>
+                            </span>
+                            <span id="status" ></span>
+                            </button>
                         </div>
                     </div>
                 </div>
