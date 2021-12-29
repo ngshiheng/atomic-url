@@ -31,12 +31,8 @@ npm install
 Since we're using KV as our storage, we need to first create it.
 
 ```sh
-# For development:
-wrangler kv:namespace create
-wrangler kv:namespace create --preview "URL_DB"
-
-# For production:
-wrangler kv:namespace create "URL_DB" --env=production
+wrangler kv:namespace create "URL_DB"
+wrangler kv:namespace create "URL_DB" --preview
 ```
 
 For creating these KV namespaces, remember to update your [`wrangler.toml`](./wrangler.toml) file to include the namespace bindings accordingly. Do update your `account_id` accordingly while you are at it.
