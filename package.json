@@ -1,5 +1,5 @@
 {
-    "name": "cf-url-shortener",
+    "name": "atomic-url",
     "version": "1.0.0",
     "description": "A URL shortener POC built using Cloudflare Worker.",
     "main": "index.js",
