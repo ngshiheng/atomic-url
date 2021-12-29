@@ -1,4 +1,9 @@
-<h1 align="center"><strong>URL Shortener</strong></h1>
+<h1 align="center"><strong>Atomic URL</strong></h1>
+
+<p align="center">
+  <img src="https://i.imgur.com/mlUqwN0.png">
+  <figcaption align="center"><i>A URL shortener POC built using Cloudflare Worker</i></figcaption>
+</p>
 
 Designing a URL shortener such as [TinyURL](https://tinyurl.com/) and [Bitly](https://bitly.com/) is one of the most common System Design interview questions in software engineering.
 
@@ -8,15 +13,37 @@ This is a proof of concept (POC) of how one builds an actual URL shortener servi
 
 ## Requirements
 
-Install [Wrangler](https://github.com/cloudflare/wrangler#installation) CLI for Cloudflare Workers deployment
+-   Get a [Cloudflare](https://www.cloudflare.com/) account.
+-   Install [Wrangler](https://github.com/cloudflare/wrangler#installation) CLI for Cloudflare Workers deployment.
 
-## Installation
+## Setup
 
-This project is initialized using the [`itty-router`](https://github.com/kwhitley/itty-router) package.
+### Installation
+
+This project is initialized using the [`itty-router`](https://github.com/kwhitley/itty-router) [worker template](https://github.com/cloudflare/worker-template-router).
 
 ```sh
 npm install
 ```
+
+### Creating KV
+
+Since we're using KV as our storage, we need to first create it.
+
+```sh
+# For development:
+wrangler kv:namespace create
+wrangler kv:namespace create --preview "URL_DB"
+
+# For production:
+wrangler kv:namespace create "URL_DB" --env=production
+```
+
+For creating these KV namespaces, remember to update your [`wrangler.toml`](./wrangler.toml) file to include the namespace bindings accordingly. Do update your `account_id` accordingly while you are at it.
+
+## Usage
+
+To try out the project locally, simply run `wrangler dev`.
 
 ## Deployment
 
