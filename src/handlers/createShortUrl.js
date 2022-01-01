@@ -34,8 +34,13 @@ export const createShortUrl = async (request, event) => {
     try {
         const { host } = new URL(request.url)
         const { originalUrl } = await request.json()
+        if (!originalUrl) {
+            return new Response('Invalid Request Body', {
+                status: 400,
+            })
+        }
 
-        const cache = caches.default
+        const cache = await caches.open('apiCache')
 
         let response = await cache.match(originalUrl)
 
