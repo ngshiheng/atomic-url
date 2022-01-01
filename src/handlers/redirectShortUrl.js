@@ -3,7 +3,7 @@ Redirects short URL to its original URL.
 
 Example:
 
-Visiting http://yourdomain.com/IgWKmlXD would redirect you to its original URL.
+Visiting http://s.jerrynsh.com/FpS0a2LU would redirect you to its original URL.
 */
 export const redirectShortUrl = async ({ params }) => {
     const urlKey = decodeURIComponent(params.text)

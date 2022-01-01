@@ -1,3 +1,4 @@
+import { URL_CACHE } from '../utils/constants'
 import { generateUniqueUrlKey } from '../utils/urlKey'
 
 /*
@@ -7,7 +8,6 @@ Creates a new `urlKey: originalUrl` key-value pair in KV.
 
 Example:
 
-Request:
 ```sh
 $ curl --request POST \
   --url http://yourdomain.com/api/url \
@@ -17,7 +17,7 @@ $ curl --request POST \
 }'
 ```
 
-Response:
+JSON Response:
 ```json
 {
 	"urlKey": "IgWKmlXD",
@@ -25,47 +25,29 @@ Response:
 	"originalUrl": "https://www.notion.so/jerrynsh/How-I-Built-My-Own-TinyURL-For-Free-0f04b71be49447cea7477a346c3b8f79"
 }
 ```
-
-Do note that Cache API is not enabled on `workers.dev` 
-
-You will need to deploy this over a custom domain to see it work.
 */
 export const createShortUrl = async (request, event) => {
     try {
+        const urlKey = await generateUniqueUrlKey()
+
         const { host } = new URL(request.url)
+        const shortUrl = `https://${host}/${urlKey}`
+
         const { originalUrl } = await request.json()
-        if (!originalUrl) {
-            return new Response('Invalid Request Body', {
-                status: 400,
-            })
-        }
+        const response = new Response(
+            JSON.stringify({
+                urlKey,
+                shortUrl,
+                originalUrl,
+            }),
+            { headers: { 'Content-Type': 'application/json' } }
+        )
 
-        const cache = await caches.open('apiCache')
+        const cache = await caches.open(URL_CACHE)
 
-        let response = await cache.match(originalUrl)
+        event.waitUntil(URL_DB.put(urlKey, originalUrl))
+        event.waitUntil(cache.put(originalUrl, response.clone()))
 
-        if (!response) {
-            console.log('Cache not found. Creating new response')
-
-            const urlKey = await generateUniqueUrlKey()
-            const shortUrl = `https://${host}/${urlKey}`
-
-            response = new Response(
-                JSON.stringify({
-                    urlKey,
-                    shortUrl,
-                    originalUrl,
-                }),
-                { headers: { 'Content-Type': 'application/json' } }
-            )
-
-            event.waitUntil(URL_DB.put(urlKey, originalUrl))
-            event.waitUntil(cache.put(originalUrl, response.clone()))
-
-            return response
-        }
-
-        console.log('Serving response from cache')
         return response
     } catch (error) {
         console.error(error, error.stack)

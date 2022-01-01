@@ -174,3 +174,5 @@ export const LANDING_PAGE_HTML = `
     </style>
 </html>
 `
+
+export const URL_CACHE = 'apiCache'
