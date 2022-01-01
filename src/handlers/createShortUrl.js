@@ -26,21 +26,44 @@ Response:
 }
 ```
 
+Do note that Cache API is not enabled on `workers.dev` 
 
+You will need to deploy this over a custom domain to see it work.
 */
-export const createShortUrl = async (request) => {
-    const { hostname } = new URL(request.url)
-    const { originalUrl } = await request.json()
+export const createShortUrl = async (request, event) => {
+    try {
+        const { host } = new URL(request.url)
+        const { originalUrl } = await request.json()
 
-    const urlKey = await generateUniqueUrlKey()
-    await URL_DB.put(urlKey, originalUrl)
+        const cache = caches.default
 
-    return new Response(
-        JSON.stringify({
-            urlKey,
-            shortUrl: `https://${hostname}/${urlKey}`,
-            originalUrl,
-        }),
-        { headers: { 'Content-Type': 'application/json' } }
-    )
+        let response = await cache.match(originalUrl)
+
+        if (!response) {
+            console.log('Cache not found. Creating new response')
+
+            const urlKey = await generateUniqueUrlKey()
+            const shortUrl = `https://${host}/${urlKey}`
+
+            response = new Response(
+                JSON.stringify({
+                    urlKey,
+                    shortUrl,
+                    originalUrl,
+                }),
+                { headers: { 'Content-Type': 'application/json' } }
+            )
+
+            event.waitUntil(URL_DB.put(urlKey, originalUrl))
+            event.waitUntil(cache.put(originalUrl, response.clone()))
+
+            return response
+        }
+
+        console.log('Serving response from cache')
+        return response
+    } catch (error) {
+        console.error(error, error.stack)
+        return new Response('Unexpected Error', { status: 500 })
+    }
 }

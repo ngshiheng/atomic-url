@@ -25,5 +25,5 @@ router.all('*', () => new Response('Not Found', { status: 404 }))
 
 // All incoming requests are passed to the router where your routes are called and the response is sent.
 addEventListener('fetch', (e) => {
-    e.respondWith(router.handle(e.request))
+    e.respondWith(router.handle(e.request, e))
 })
