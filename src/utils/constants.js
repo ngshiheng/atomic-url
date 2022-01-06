@@ -33,6 +33,10 @@ export const LANDING_PAGE_HTML = `
                         statusElement.classList.remove('is-loading')
                         statusElement.innerHTML = data.shortUrl
                     })
+                    .catch((error) => {
+                        statusElement.classList.remove('is-loading')
+                        statusElement.innerHTML = '⛔ Daily Limit Exceeded'
+                    })
             
                 originalUrlElement.value = ''
             }
