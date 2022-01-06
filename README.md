@@ -6,6 +6,8 @@ While meddling around with Cloudflare Worker, it gave me an idea to build an act
 
 This is a proof of concept (POC) of how one builds an actual URL shortener service using serverless computing.
 
+[Read more...](https://jerrynsh.com/i-built-my-own-tiny-url/)
+
 ## Requirements
 
 -   Get a [Cloudflare](https://www.cloudflare.com/) account.
