@@ -1,20 +1,26 @@
 {
     "name": "atomic-url",
-    "version": "1.0.0",
+    "version": "0.0.0-development",
     "description": "A URL shortener POC built using Cloudflare Worker.",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "format": "prettier --write '**/*.{js,css,json,md}'"
+        "format": "prettier --write '**/*.{js,css,json,md}'",
+        "semantic-release": "semantic-release"
     },
     "author": "Jerry Ng <ngshiheng@gmail.com>",
     "license": "MIT",
     "devDependencies": {
-        "prettier": "2.5.1"
+        "prettier": "2.5.1",
+        "semantic-release": "^18.0.1"
     },
     "dependencies": {
         "itty-router": "2.4.8",
         "nanoid": "3.1.30",
         "serverless-cloudflare-workers": "1.2.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ngshiheng/atomic-url.git"
     }
 }
