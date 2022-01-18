@@ -15,7 +15,7 @@
         "semantic-release": "19.0.2"
     },
     "dependencies": {
-        "itty-router": "2.4.8",
+        "itty-router": "2.4.10",
         "nanoid": "3.2.0",
         "serverless-cloudflare-workers": "1.2.0"
     },
