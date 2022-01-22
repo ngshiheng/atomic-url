@@ -10,8 +10,8 @@ This is a proof of concept (POC) of how one builds an actual URL shortener servi
 
 ## Requirements
 
--   Get a [Cloudflare](https://www.cloudflare.com/) account.
--   Install [Wrangler](https://github.com/cloudflare/wrangler#installation) CLI for Cloudflare Workers deployment.
+-   Get a [Cloudflare](https://www.cloudflare.com/) account
+-   Install [Wrangler](https://github.com/cloudflare/wrangler#installation) CLI for Cloudflare Workers deployment
 
 ## Setup
 
@@ -20,7 +20,7 @@ This is a proof of concept (POC) of how one builds an actual URL shortener servi
 This project is initialized using the [`itty-router`](https://github.com/kwhitley/itty-router) [worker template](https://github.com/cloudflare/worker-template-router).
 
 ```sh
-npm install
+npm ci
 ```
 
 ### Creating KV
@@ -32,7 +32,9 @@ wrangler kv:namespace create "URL_DB"
 wrangler kv:namespace create "URL_DB" --preview
 ```
 
-For creating these KV namespaces, remember to update your [`wrangler.toml`](./wrangler.toml) file to include the namespace bindings accordingly. Do update your `account_id` accordingly while you are at it.
+For creating these KV namespaces, remember to update your [`wrangler.toml`](./wrangler.toml) file to include the namespace bindings accordingly.
+
+Do update your `account_id` accordingly while you are at it.
 
 ## Usage
 
@@ -51,8 +53,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ### Steps
 
 1. Fork this
-2. Create your feature branch (`git checkout -b feature/fooBar`)
-3. Please make sure you have installed the `pre-commit` hook and make sure it passes all the lint and format check
-4. Commit your changes (`git commit -am 'feat: Add some fooBar'`, make sure that your commits are [semantic](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716))
-5. Push to the branch (`git push origin feature/fooBar`)
-6. Create a new Pull Request
+2. Create your feature branch (`git checkout -b jimmy/fooBar`)
+3. Commit your changes (`git commit -am 'feat: add some fooBar'`, make sure that your commits are [semantic](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716))
+4. Push to the branch (`git push origin jimmy/fooBar`)
+5. Create a new Pull Request
