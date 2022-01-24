@@ -6,6 +6,7 @@ Example:
 Visiting http://s.jerrynsh.com/FpS0a2LU would redirect you to its original URL.
 */
 export const redirectShortUrl = async ({ params }) => {
+    /* eslint-disable no-undef */
     const urlKey = decodeURIComponent(params.text)
 
     const originalUrl = await URL_DB.get(urlKey)

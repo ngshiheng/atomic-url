@@ -5,12 +5,16 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "format": "prettier --write '**/*.{js,css,json,md}'",
+        "eslint": "eslint . --ext js,ts --ignore-path .eslintignore",
+        "eslint:fix": "eslint --fix . --ext js,ts --ignore-path .eslintignore",
+        "prettier": "prettier \"./**/*.{js,ts,yml,yaml}\" -l --ignore-path .eslintignore",
+        "prettier:fix": "prettier \"./**/*.{js,ts,yml,yaml}\" --write --ignore-path .eslintignore",
         "semantic-release": "semantic-release"
     },
     "author": "Jerry Ng <ngshiheng@gmail.com>",
     "license": "MIT",
     "devDependencies": {
+        "eslint": "^8.7.0",
         "prettier": "2.5.1",
         "semantic-release": "19.0.2"
     },

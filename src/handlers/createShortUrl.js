@@ -27,6 +27,7 @@ JSON Response:
 ```
 */
 export const createShortUrl = async (request, event) => {
+    /* eslint-disable no-undef */
     try {
         const urlKey = await generateUniqueUrlKey()
 
