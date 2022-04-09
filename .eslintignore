@@ -1,5 +1,6 @@
+.github
+.idea
+.vscode
 dist
 node_modules
 worker
-.idea
-.vscode
