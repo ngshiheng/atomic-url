@@ -1,8 +1,8 @@
 import { Router } from 'itty-router'
-import { createShortUrl } from './src/handlers/createShortUrl'
-import { redirectShortUrl } from './src/handlers/redirectShortUrl'
-import { shortUrlCacheMiddleware } from './src/middleware/shortUrlCache'
-import { LANDING_PAGE_HTML } from './src/utils/constants'
+import { createShortUrl } from './handlers/createShortUrl'
+import { redirectShortUrl } from './handlers/redirectShortUrl'
+import { shortUrlCacheMiddleware } from './middleware/shortUrlCache'
+import { LANDING_PAGE_HTML } from './utils/constants'
 
 const router = Router()
 

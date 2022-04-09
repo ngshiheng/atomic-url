@@ -2,7 +2,7 @@
     "name": "atomic-url",
     "version": "0.0.0-development",
     "description": "A URL shortener POC built using Cloudflare Worker.",
-    "main": "index.js",
+    "main": "src/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "eslint": "eslint . --ext js,ts --ignore-path .eslintignore",
