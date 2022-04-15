@@ -13,7 +13,7 @@ $ curl --request POST \
   --url http://yourdomain.com/api/url \
   --header 'Content-Type: application/json' \
   --data '{
-	"originalUrl": "https://www.notion.so/jerrynsh/How-I-Built-My-Own-TinyURL-For-Free-0f04b71be49447cea7477a346c3b8f79"
+	"originalUrl": "https://jerrynsh.com/how-to-build-a-pastebin-clone-for-free/"
 }'
 ```
 
@@ -22,7 +22,7 @@ JSON Response:
 {
 	"urlKey": "IgWKmlXD",
 	"shortUrl": "https://yourdomain.com/IgWKmlXD",
-	"originalUrl": "https://www.notion.so/jerrynsh/How-I-Built-My-Own-TinyURL-For-Free-0f04b71be49447cea7477a346c3b8f79"
+	"originalUrl": "https://jerrynsh.com/how-to-build-a-pastebin-clone-for-free/"
 }
 ```
 */
