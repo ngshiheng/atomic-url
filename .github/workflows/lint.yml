@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - "**"
-  workflow_call:
-
+      - "!main"
+  workflow_call: null
 jobs:
   lint:
     runs-on: ubuntu-latest
