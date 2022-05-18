@@ -1,17 +1,31 @@
-name = "atomic-url"
 type = "webpack"
-
 account_id = "19a745c88f8264f29c608584b7e417ab"
-compatibility_date = "2021-12-26"
-kv_namespaces = [
-  {binding = "URL_DB", id = "7da8f192d2c1443a8b2ca76b22a8069f", preview_id = "ca7936b380a840908c035a88d1e76584"},
-]
-route = ""
-workers_dev = true
 zone_id = "e69d9e8116a9787a7c36dc16f6195ae2"
+compatibility_date = "2021-12-26"
+
+name = "atomic-url-dev"
+workers_dev = true
+kv_namespaces = [
+  { binding = "URL_DB", id = "", preview_id = "ca7936b380a840908c035a88d1e76584" },
+]
 
 [dev]
 ip = "0.0.0.0"
 local_protocol = "http"
 port = 8787
 upstream_protocol = "https"
+
+[env.staging]
+name = "atomic-url-staging"
+workers_dev = true
+kv_namespaces = [
+  { binding = "URL_DB", id = "ca7936b380a840908c035a88d1e76584" },
+]
+
+[env.production]
+name = "atomic-url"
+route = "s.jerrynsh.com/*"
+workers_dev = false
+kv_namespaces = [
+  { binding = "URL_DB", id = "7da8f192d2c1443a8b2ca76b22a8069f" },
+]

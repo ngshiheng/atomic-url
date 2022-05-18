@@ -36,6 +36,8 @@ wrangler kv:namespace create "URL_DB" --preview
 
 For creating these KV namespaces, remember to update your [`wrangler.toml`](./wrangler.toml) file to include the namespace bindings accordingly.
 
+[Read more](https://developers.cloudflare.com/workers/wrangler/configuration/#configure-wranglertoml) about configuring `wrangler.toml`.
+
 ## Optional: CI/CD
 
 1. This project uses [Wrangler actions](https://github.com/marketplace/actions/deploy-to-cloudflare-workers-with-wrangler) to automatically publish worker. To do so, add `CF_API_TOKEN` into your GitHub repository secrets. You can [create your API token](https://dash.cloudflare.com/profile/api-tokens) using the `Edit Cloudflare Workers` template.
