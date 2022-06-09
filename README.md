@@ -8,6 +8,19 @@ This is a proof of concept (POC) of how one builds an actual URL shortener servi
 
 [Read more...](https://jerrynsh.com/i-built-my-own-tiny-url/)
 
+## Overview
+
+- [Overview](#overview)
+- [Requirements](#requirements)
+- [Setup](#setup)
+  - [Installation](#installation)
+  - [Creating KV](#creating-kv)
+- [Optional: CI/CD](#optional-cicd)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+  - [Steps](#steps)
+
 ## Requirements
 
 -   Get a [Cloudflare](https://www.cloudflare.com/) account
