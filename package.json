@@ -14,7 +14,7 @@
     "author": "Jerry Ng <ngshiheng@gmail.com>",
     "license": "MIT",
     "devDependencies": {
-        "eslint": "8.19.0",
+        "eslint": "8.20.0",
         "prettier": "2.7.1",
         "semantic-release": "19.0.3"
     },
