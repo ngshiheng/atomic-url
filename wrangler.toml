@@ -1,11 +1,11 @@
-name = "atomic-url-dev"
+name = "atomic-url"
 main = "./src/index.js"
 account_id = "19a745c88f8264f29c608584b7e417ab"
 compatibility_date = "2022-09-22"
 
 workers_dev = true
 kv_namespaces = [
-  { binding = "URL_DB", id = "ca7936b380a840908c035a88d1e76584", preview_id = "ca7936b380a840908c035a88d1e76584" },
+  { binding = "URL_DB", id = "bf98832a3f6e45e18f3c39b6db1d329a", preview_id = "bf98832a3f6e45e18f3c39b6db1d329a" },
 ]
 
 [vars]
@@ -21,7 +21,7 @@ upstream_protocol = "https"
 name = "atomic-url-staging"
 workers_dev = true
 kv_namespaces = [
-  { binding = "URL_DB", id = "ca7936b380a840908c035a88d1e76584" },
+  { binding = "URL_DB", id = "bf98832a3f6e45e18f3c39b6db1d329a" },
 ]
 [env.staging.vars]
 URL_EXPIRATION_TTL = 86400
@@ -32,7 +32,7 @@ name = "atomic-url"
 route = "s.jerrynsh.com/*"
 workers_dev = false
 kv_namespaces = [
-  { binding = "URL_DB", id = "7da8f192d2c1443a8b2ca76b22a8069f" },
+  { binding = "URL_DB", id = "709b8cf5ddf74f739f1535c34ff0634b" },
 ]
 [env.production.vars]
 URL_EXPIRATION_TTL = 604800
