@@ -1,8 +1,5 @@
 <h1 align="center"><strong>Atomic URL</strong></h1>
 
-> **NOTE**
-> This project uses `wrangler@v1.x.x`. `wrangler@v2.x.x` was released 1st May 2022, check out the comparison [here](https://developers.cloudflare.com/workers/wrangler/compare-v1-v2/).
-
 ```mermaid
 flowchart TD
   api([API Clients])
@@ -35,16 +32,16 @@ This is a proof of concept (POC) of how one builds an actual URL shortener servi
 
 ## Table of Contents
 
--   [Table of Contents](#table-of-contents)
--   [Requirements](#requirements)
--   [Setup](#setup)
-    -   [Installation](#installation)
-    -   [Creating KV](#creating-kv)
--   [Optional: CI/CD](#optional-cicd)
--   [Usage](#usage)
--   [Deployment](#deployment)
--   [Contributing](#contributing)
-    -   [Steps](#steps)
+- [Table of Contents](#table-of-contents)
+- [Requirements](#requirements)
+- [Setup](#setup)
+  - [Installation](#installation)
+  - [Creating KV](#creating-kv)
+- [Optional: CI/CD](#optional-cicd)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+  - [Steps](#steps)
 
 ## Requirements
 
@@ -95,7 +92,7 @@ To try out the project locally, simply run `wrangler dev`.
 
 2. [Create 2 KV](#creating-kv) and update your `wrangler.toml` file to include the namespace bindings accordingly.
 
-3. To publish any new changes to your Cloudflare Worker, run `wrangler publish`.
+3. To publish any new changes to your Cloudflare Worker, run `wrangler publish -e <env>` where `<env>` could `staging` or `production`.
 
 ## Contributing
 
