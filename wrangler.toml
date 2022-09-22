@@ -5,11 +5,11 @@ compatibility_date = "2022-09-22"
 
 workers_dev = true
 kv_namespaces = [
-  { binding = "URL_DB", id = "", preview_id = "ca7936b380a840908c035a88d1e76584" },
+  { binding = "URL_DB", id = "ca7936b380a840908c035a88d1e76584", preview_id = "ca7936b380a840908c035a88d1e76584" },
 ]
 
 [vars]
-URL_EXPIRATION_TTL = 604800
+URL_EXPIRATION_TTL = 86400
 
 [dev]
 ip = "0.0.0.0"
@@ -23,6 +23,9 @@ workers_dev = true
 kv_namespaces = [
   { binding = "URL_DB", id = "ca7936b380a840908c035a88d1e76584" },
 ]
+[env.staging.vars]
+URL_EXPIRATION_TTL = 86400
+
 
 [env.production]
 name = "atomic-url"
@@ -31,3 +34,5 @@ workers_dev = false
 kv_namespaces = [
   { binding = "URL_DB", id = "7da8f192d2c1443a8b2ca76b22a8069f" },
 ]
+[env.production.vars]
+URL_EXPIRATION_TTL = 604800
