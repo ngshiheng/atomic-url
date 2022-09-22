@@ -1,74 +1,74 @@
 name: CI
-"on":
-  push:
-    branches:
-      - main
-  repository_dispatch: null
+'on':
+    push:
+        branches:
+            - main
+    repository_dispatch: null
 jobs:
-  lint:
-    uses: ./.github/workflows/lint.yml
-  build-and-deploy-stg:
-    runs-on: ubuntu-latest
-    needs:
-      - lint
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: lts/*
-          cache: npm
-      - run: npm ci
-      - run: npm run build --if-present
-        env:
-          CI: true
-      - uses: cloudflare/wrangler-action@1.3.0
-        name: Deploy to Cloudflare (Staging)
-        with:
-          apiToken: "${{ secrets.CF_API_TOKEN }}"
-          environment: "staging"
-  k6-smoke-test:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    needs:
-      - build-and-deploy-stg
-    steps:
-      - uses: actions/checkout@v3
-      - uses: grafana/k6-action@v0.2.0
-        name: Run k6 local test
-        with:
-          filename: scripts/test.js
-  semantic-release:
-    runs-on: ubuntu-latest
-    needs:
-      - k6-smoke-test
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: lts/*
-          cache: npm
-      - run: npm ci
-      - run: npx semantic-release
-        name: Run Semantic Release
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          NPM_TOKEN: "${{ secrets.NPM_TOKEN }}"
-  build-and-deploy-prd:
-    runs-on: ubuntu-latest
-    needs:
-      - k6-smoke-test
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: lts/*
-          cache: npm
-      - run: npm ci
-      - run: npm run build --if-present
-        env:
-          CI: true
-      - uses: cloudflare/wrangler-action@1.3.0
-        name: Deploy to Cloudflare (Production)
-        with:
-          apiToken: "${{ secrets.CF_API_TOKEN }}"
-          environment: "production"
+    lint:
+        uses: ./.github/workflows/lint.yml
+    build-and-deploy-stg:
+        runs-on: ubuntu-latest
+        needs:
+            - lint
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: lts/*
+                  cache: npm
+            - run: npm ci
+            - run: npm run build --if-present
+              env:
+                  CI: true
+            - uses: cloudflare/wrangler-action@2.0.0
+              name: Deploy to Cloudflare (Staging)
+              with:
+                  apiToken: '${{ secrets.CF_API_TOKEN }}'
+                  environment: 'staging'
+    k6-smoke-test:
+        runs-on: ubuntu-latest
+        timeout-minutes: 30
+        needs:
+            - build-and-deploy-stg
+        steps:
+            - uses: actions/checkout@v3
+            - uses: grafana/k6-action@v0.2.0
+              name: Run k6 local test
+              with:
+                  filename: scripts/test.js
+    semantic-release:
+        runs-on: ubuntu-latest
+        needs:
+            - k6-smoke-test
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: lts/*
+                  cache: npm
+            - run: npm ci
+            - run: npx semantic-release
+              name: Run Semantic Release
+              env:
+                  GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+                  NPM_TOKEN: '${{ secrets.NPM_TOKEN }}'
+    build-and-deploy-prd:
+        runs-on: ubuntu-latest
+        needs:
+            - k6-smoke-test
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: lts/*
+                  cache: npm
+            - run: npm ci
+            - run: npm run build --if-present
+              env:
+                  CI: true
+            - uses: cloudflare/wrangler-action@2.0.0
+              name: Deploy to Cloudflare (Production)
+              with:
+                  apiToken: '${{ secrets.CF_API_TOKEN }}'
+                  environment: 'production'
