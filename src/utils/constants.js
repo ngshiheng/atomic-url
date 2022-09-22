@@ -1,5 +1,4 @@
-export const ALPHABET =
-    '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+export const ALPHABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 
 export const LANDING_PAGE_HTML = `
 <!DOCTYPE html>
@@ -36,7 +35,7 @@ export const LANDING_PAGE_HTML = `
                     })
                     .catch((error) => {
                         statusElement.classList.remove('is-loading')
-                        statusElement.innerHTML = '⛔ Daily Limit Exceeded'
+                        statusElement.innerHTML = '⛔ To Err is Human'
                     })
             
                 originalUrlElement.value = ''
