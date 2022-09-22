@@ -46,7 +46,11 @@ export const createShortUrl = async (request, event) => {
 
         const cache = await caches.open(URL_CACHE)
 
-        event.waitUntil(URL_DB.put(urlKey, originalUrl))
+        event.waitUntil(
+            URL_DB.put(urlKey, originalUrl, {
+                expirationTtl: URL_EXPIRATION_TTL,
+            })
+        )
         event.waitUntil(cache.put(originalUrl, response.clone()))
 
         return response

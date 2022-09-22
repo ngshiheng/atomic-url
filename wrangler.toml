@@ -8,6 +8,9 @@ kv_namespaces = [
   { binding = "URL_DB", id = "", preview_id = "ca7936b380a840908c035a88d1e76584" },
 ]
 
+[vars]
+URL_EXPIRATION_TTL = 604800
+
 [dev]
 ip = "0.0.0.0"
 local_protocol = "http"
