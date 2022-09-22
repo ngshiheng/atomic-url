@@ -1,5 +1,5 @@
-import http from 'k6/http'
 import { check, group, sleep } from 'k6'
+import http from 'k6/http'
 
 export const options = {
     duration: '10s',
@@ -21,21 +21,14 @@ export default function () {
 
         check(res, {
             'is status 200': (r) => r.status === 200,
-            'verify homepage text': (r) =>
-                r.body.includes(
-                    'A URL shortener POC built using Cloudflare Worker'
-                ),
+            'verify homepage text': (r) => r.body.includes('A URL shortener POC built using Cloudflare Worker'),
         })
 
         sleep(1) // second
     })
 
     group('visit rest endpoint', function () {
-        const res = http.post(
-            `${BASE_URL}/api/url`,
-            JSON.stringify({ originalUrl: DUMMY_ORIGINAL_URL }),
-            { headers: { 'Content-Type': 'application/json' } }
-        )
+        const res = http.post(`${BASE_URL}/api/url`, JSON.stringify({ originalUrl: DUMMY_ORIGINAL_URL }), { headers: { 'Content-Type': 'application/json' } })
 
         check(res, {
             'is status 200': (r) => r.status === 200,
