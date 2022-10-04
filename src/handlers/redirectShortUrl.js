@@ -1,3 +1,5 @@
+import NOT_FOUND_PAGE from '../404.html'
+
 /*
 Redirects short URL to its original URL.
 
@@ -14,5 +16,5 @@ export const redirectShortUrl = async ({ params }) => {
     if (originalUrl) {
         return Response.redirect(originalUrl, 301)
     }
-    return new Response('Invalid Short URL', { status: 404 }) // TODO: Redirect to a better looking html page.
+    return new Response(NOT_FOUND_PAGE, { headers: { 'content-type': 'text/html;charset=UTF-8' } })
 }
