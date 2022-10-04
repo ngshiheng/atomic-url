@@ -1,35 +1,23 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "dependencyDashboard": true,
-  "dependencyDashboardAutoclose": true,
-  "extends": [
-    "config:base"
-  ],
-  "packageRules": [
-    {
-      "description": "Automatically merges minor and patch-level updates",
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "digest"
-      ],
-      "automerge": true,
-      "automergeType": "branch"
-    },
-    {
-      "description": "Automatically creates a PR whenever there is a new major Renovate version",
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "automerge": false,
-      "prCreation": "immediate"
-    }
-  ],
-  "rangeStrategy": "pin",
-  "rebaseWhen": "behind-base-branch",
-  "schedule": [
-    "after 8pm every weekday",
-    "every weekend"
-  ],
-  "timezone": "Asia/Singapore"
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "dependencyDashboard": true,
+    "dependencyDashboardAutoclose": true,
+    "extends": ["config:base", "schedule:monthly"],
+    "packageRules": [
+        {
+            "description": "Automatically merges minor and patch-level updates",
+            "matchUpdateTypes": ["minor", "patch", "digest"],
+            "automerge": true,
+            "automergeType": "branch"
+        },
+        {
+            "description": "Automatically creates a PR whenever there is a new major Renovate version",
+            "matchUpdateTypes": ["major"],
+            "automerge": false,
+            "prCreation": "immediate"
+        }
+    ],
+    "rangeStrategy": "pin",
+    "rebaseWhen": "behind-base-branch",
+    "timezone": "Asia/Singapore"
 }
