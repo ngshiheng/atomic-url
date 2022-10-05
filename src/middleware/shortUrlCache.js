@@ -1,5 +1,3 @@
-import { URL_CACHE } from '../utils/constants'
-
 /*
 A cache middleware that checks if `originalUrl` is present in the `URL_CACHE` cache.
 
@@ -16,6 +14,7 @@ export const shortUrlCacheMiddleware = async (request) => {
         })
     }
 
+    /* eslint-disable no-undef */
     const cache = await caches.open(URL_CACHE)
     const response = await cache.match(originalUrl)
 

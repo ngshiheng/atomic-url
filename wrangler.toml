@@ -9,6 +9,7 @@ kv_namespaces = [
 ]
 
 [vars]
+URL_CACHE = "apiCache"
 URL_EXPIRATION_TTL = 86400
 
 [dev]
@@ -24,6 +25,7 @@ kv_namespaces = [
   { binding = "URL_DB", id = "bf98832a3f6e45e18f3c39b6db1d329a" },
 ]
 [env.staging.vars]
+URL_CACHE = "apiCache"
 URL_EXPIRATION_TTL = 86400
 
 
@@ -35,4 +37,5 @@ kv_namespaces = [
   { binding = "URL_DB", id = "709b8cf5ddf74f739f1535c34ff0634b" },
 ]
 [env.production.vars]
+URL_CACHE = "apiCache"
 URL_EXPIRATION_TTL = 604800

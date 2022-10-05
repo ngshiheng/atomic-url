@@ -1,4 +1,3 @@
-import { URL_CACHE } from '../utils/constants'
 import { generateUniqueUrlKey } from '../utils/urlKey'
 
 /*
@@ -43,7 +42,6 @@ export const createShortUrl = async (request, event) => {
             }),
             { headers: { 'Content-Type': 'application/json' } }
         )
-
         const cache = await caches.open(URL_CACHE)
 
         event.waitUntil(

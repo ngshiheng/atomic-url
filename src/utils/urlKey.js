@@ -1,5 +1,6 @@
 import { customAlphabet } from 'nanoid'
-import { ALPHABET } from './constants'
+
+const ALPHABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 
 /*
 Generate a unique `urlKey` using `nanoid` package.
