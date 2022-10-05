@@ -10,7 +10,7 @@ kv_namespaces = [
 
 [vars]
 URL_CACHE = "apiCache"
-URL_EXPIRATION_TTL = 86400
+URL_EXPIRATION_TTL = 3600 # seconds
 
 [dev]
 ip = "0.0.0.0"
@@ -26,7 +26,7 @@ kv_namespaces = [
 ]
 [env.staging.vars]
 URL_CACHE = "apiCache"
-URL_EXPIRATION_TTL = 86400
+URL_EXPIRATION_TTL = 43200 # seconds
 
 
 [env.production]
@@ -38,4 +38,4 @@ kv_namespaces = [
 ]
 [env.production.vars]
 URL_CACHE = "apiCache"
-URL_EXPIRATION_TTL = 604800
+URL_EXPIRATION_TTL = 604800 # seconds
