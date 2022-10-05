@@ -14,10 +14,25 @@
         <script src="https://kit.fontawesome.com/15181efa86.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
         <script async defer data-website-id="9860fa16-de2e-4eaa-b0b4-f11c471ad4d6" src="https://umami.jerrynsh.com/umami.js"></script>
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" async defer></script>
         <script>
-            const submitURL = () => {
-                let statusElement = document.getElementById('status')
-                let originalUrlElement = document.getElementById('url')
+            let sitekey = '0x4AAAAAAAAujdqolLL946vD'
+            let turnstileToken
+
+            window.onloadTurnstileCallback = function () {
+                const turnstileOptions = {
+                    sitekey,
+                    theme: 'light',
+                    callback: function (token) {
+                        turnstileToken = token
+                    },
+                }
+                turnstile.render('#cf-turnstile-widget', turnstileOptions)
+            }
+
+            const submitURL = async () => {
+                const statusElement = document.getElementById('status')
+                const originalUrlElement = document.getElementById('url')
 
                 if (!originalUrlElement.reportValidity()) {
                     throw new Error('Invalid URL.')
@@ -26,19 +41,20 @@
                 statusElement.classList.add('is-loading')
 
                 const originalUrl = originalUrlElement.value
-                const body = JSON.stringify({ originalUrl })
+                const body = JSON.stringify({ originalUrl, turnstileToken })
 
-                fetch('/api/url', { method: 'POST', body })
-                    .then((data) => data.json())
-                    .then((data) => {
-                        statusElement.classList.remove('is-loading')
-                        statusElement.innerHTML = data.shortUrl
-                    })
-                    .catch((error) => {
-                        statusElement.classList.remove('is-loading')
-                        statusElement.innerHTML = '⛔ To Err is Human'
-                    })
+                const res = await fetch('/api/url', { method: 'POST', body })
+                statusElement.classList.remove('is-loading')
+
+                if (res.status === 200) {
+                    const { shortUrl } = await res.json()
+                    statusElement.innerHTML = shortUrl
+                } else {
+                    statusElement.innerHTML = `⛔ ${res.statusText}`
+                }
+
                 originalUrlElement.value = ''
+                turnstile.reset('#cf-turnstile-widget')
             }
 
             const copyToClipboard = (elementId) => {
@@ -93,11 +109,16 @@
                                     <input
                                         class="input is-link is-primary is-medium is-rounded"
                                         type="url"
-                                        placeholder="https://jerrynsh.com/"
+                                        placeholder="https://jerrynsh.com"
                                         id="url"
                                         required
                                     />
                                 </div>
+                            </div>
+                            <div class="checkbox mb-3">
+                                <!-- The Turnstile widget will be injected in the following div. -->
+                                <div id="cf-turnstile-widget"></div>
+                                <!-- end. -->
                             </div>
                             <button id="submit" class="button is-block is-primary is-rounded is-fullwidth is-medium" onclick="submitURL()">Shorten</button>
                             <br />

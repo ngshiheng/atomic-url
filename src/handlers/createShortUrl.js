@@ -54,6 +54,6 @@ export const createShortUrl = async (request, event) => {
         return response
     } catch (error) {
         console.error(error, error.stack)
-        return new Response('Unexpected Error', { status: 500 })
+        return new Response('Internal Server Error', { status: 500 })
     }
 }
