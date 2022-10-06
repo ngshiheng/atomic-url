@@ -12,7 +12,7 @@ export const options = {
 
 let shortenLink
 
-const BASE_URL = 'https://atomic-url-staging.jerrynsh.workers.dev/'
+const BASE_URL = __ENV.TEST_URL
 const DUMMY_ORIGINAL_URL = 'https://jerrynsh.com/i-built-my-own-tiny-url/'
 
 export default function () {

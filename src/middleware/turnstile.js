@@ -5,10 +5,15 @@ Turnstile is Cloudflare's smart CAPTCHA alternative.
 
 A middleware that calls Cloudflare's siteverify endpoint to validate the Turnstile widget response.
 
-Do note to set `TURNSTILE_SECRET` accordingly.
+Do note to set `TURNSTILE_SECRET` and `TEST_URL` accordingly.
 */
 export const turnstileMiddleware = async (request) => {
     /* eslint-disable no-undef */
+    if (request.url == TEST_URL) {
+        console.log('Skipping Turnstile verification for tests.')
+        return
+    }
+
     const { turnstileToken } = await request.clone().json()
 
     const response = await fetch(TURNSTILE_SITEVERIFY_ENDPOINT, {
