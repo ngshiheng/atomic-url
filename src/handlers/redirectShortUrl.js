@@ -16,5 +16,5 @@ export const redirectShortUrl = async ({ params }) => {
     if (originalUrl) {
         return Response.redirect(originalUrl, 301)
     }
-    return new Response(NOT_FOUND_PAGE, { headers: { 'content-type': 'text/html;charset=UTF-8' } })
+    return new Response(NOT_FOUND_PAGE, { headers: { 'Content-Type': 'text/html;charset=UTF-8' }, status: 404 })
 }
