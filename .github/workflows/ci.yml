@@ -33,7 +33,7 @@ jobs:
             - build-and-deploy-stg
         steps:
             - uses: actions/checkout@v3
-            - uses: grafana/k6-action@v0.2.0
+            - uses: grafana/k6-action@v0.3.0
               name: Run k6 local test
               env:
                   TEST_URL: '${{ secrets.TEST_URL }}'
