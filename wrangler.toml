@@ -1,15 +1,15 @@
-name = "atomic-url"
-main = "./src/index.js"
 account_id = "19a745c88f8264f29c608584b7e417ab"
 compatibility_date = "2022-09-22"
+main = "./src/index.js"
+name = "atomic-url"
 
-workers_dev = true
 kv_namespaces = [
-  { binding = "URL_DB", id = "bf98832a3f6e45e18f3c39b6db1d329a", preview_id = "bf98832a3f6e45e18f3c39b6db1d329a" },
+  {binding = "URL_DB", id = "bf98832a3f6e45e18f3c39b6db1d329a", preview_id = "bf98832a3f6e45e18f3c39b6db1d329a"},
 ]
+workers_dev = true
 
 [vars]
-URL_CACHE = "apiCache"
+URL_CACHE = "apiCache" 
 URL_EXPIRATION_TTL = 3600 # seconds
 
 [dev]
@@ -19,23 +19,22 @@ port = 8787
 upstream_protocol = "https"
 
 [env.staging]
+kv_namespaces = [
+  {binding = "URL_DB", id = "bf98832a3f6e45e18f3c39b6db1d329a"},
+]
 name = "atomic-url-staging"
 workers_dev = true
-kv_namespaces = [
-  { binding = "URL_DB", id = "bf98832a3f6e45e18f3c39b6db1d329a" },
-]
 [env.staging.vars]
-URL_CACHE = "apiCache"
-URL_EXPIRATION_TTL = 43200 # seconds
-
+URL_CACHE = "apiCache" 
+URL_EXPIRATION_TTL = 3600 # seconds
 
 [env.production]
+kv_namespaces = [
+  {binding = "URL_DB", id = "709b8cf5ddf74f739f1535c34ff0634b"},
+]
 name = "atomic-url"
 route = "s.jerrynsh.com/*"
 workers_dev = false
-kv_namespaces = [
-  { binding = "URL_DB", id = "709b8cf5ddf74f739f1535c34ff0634b" },
-]
 [env.production.vars]
-URL_CACHE = "apiCache"
-URL_EXPIRATION_TTL = 604800 # seconds
+URL_CACHE = "apiCache" 
+URL_EXPIRATION_TTL = 3600 # seconds
